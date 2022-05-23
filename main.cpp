@@ -36,10 +36,10 @@ int main(int argc, char *argv[]) {
         key_if.close();
 
         string m = decrypt(message, pub, key);
-        if (m == "") {
+        if (m.empty()) {
             return 1;
         }
-        cout << m << endl;
+        cout << endl << "Message:" << endl << m << endl;
 
         return 0;
 
@@ -52,6 +52,6 @@ int main(int argc, char *argv[]) {
     } else {
         cout << "Something went wrong..." << endl;
         return 1;
-        
+
     }
 }

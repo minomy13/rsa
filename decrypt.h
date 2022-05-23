@@ -20,6 +20,7 @@ string decrypt(string message, string pub, string key) {
     int N_check;
 
     vector<int> tmp;
+    string result;
 
     tmp = segmentation(pub);
     if (tmp.size() != 2) {
@@ -41,10 +42,34 @@ string decrypt(string message, string pub, string key) {
         return "";
     }
 
+    cout << "d:       " << d << endl
+         << "N:       " << N << endl;
+
     tmp = segmentation(message);
     if (tmp.empty()) {
-
+        cout << "\033[1;31mMessage must not be empty!\033[0m";
+        return "";
     }
+
+    for (int i = 0; i < tmp.size(); i++) {
+        bigint big_c = tmp[i];
+        bigint big_d = d;
+        bigint big_N = N;
+        int m;
+
+        bigint m_pow = big_pow(big_c, big_d);
+        bigint big_m = m_pow % big_N;
+
+        ofstream buffer("buffer");
+        ifstream buffer_in("buffer");
+        buffer << big_m;
+        buffer.close();
+        buffer_in >> m;
+        buffer_in.close();
+        result.push_back((char) m);
+    }
+
+    return result;
 }
 
 #endif //RSA_DECRYPT_H
