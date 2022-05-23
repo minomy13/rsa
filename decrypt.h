@@ -7,7 +7,7 @@
 
 #include <fstream>
 #include <string>
-#include "bigint.h"
+#include "bigint/bigint.h"
 #include <sstream>
 
 #include "getblocks.h"

@@ -2,16 +2,16 @@
 // Created by Adrian Mysak on 20.05.22.
 //
 
-#ifndef RSA_EUKLID_H
-#define RSA_EUKLID_H
+#ifndef RSA_EUCLID_H
+#define RSA_EUCLID_H
 
-#include "bigint.h"
+#include "bigint/bigint.h"
 #include <vector>
 #include <cmath>
 
 using namespace std;
 
-bigint euklid(bigint num1, bigint num2) {
+bigint euclid(bigint num1, bigint num2) {
     // helpers
     int a = 0;
     int b = 1;
@@ -45,11 +45,9 @@ bigint euklid(bigint num1, bigint num2) {
             return table[i - 1][r];
         }
     }
-
-    return 0;
 }
 
-bigint extended_euklid_x(bigint num1, bigint num2) {
+bigint extended_euclid_x(bigint num1, bigint num2) {
     // helpers
     int a = 0;
     int b = 1;
@@ -98,4 +96,4 @@ bigint extended_euklid_x(bigint num1, bigint num2) {
     }
 }
 
-#endif //RSA_EUKLID_H
+#endif //RSA_EUCLID_H

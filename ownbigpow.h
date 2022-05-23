@@ -5,7 +5,7 @@
 #ifndef RSA_OWNBIGPOW_H
 #define RSA_OWNBIGPOW_H
 
-#include "bigint.h"
+#include "bigint/bigint.h"
 #include <iostream>
 
 using namespace std;

@@ -7,10 +7,10 @@
 
 #include <iostream>
 #include <fstream>
-#include "bigint.h"
+#include "bigint/bigint.h"
 
 #include "prime.h"
-#include "euklid.h"
+#include "euclid.h"
 #include "getblocks.h"
 
 using namespace std;
@@ -69,7 +69,7 @@ bool encrypt(string message) {
 
         // Calculating d
         cout << "Calculating d" << endl;
-        d = extended_euklid_x(e, phi_N);
+        d = extended_euclid_x(e, phi_N);
     }
 
     cout

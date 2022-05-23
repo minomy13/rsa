@@ -3,4 +3,4 @@ project(RSA)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(RSA main.cpp bigint.h euklid.h ask.h decrypt.h prime.h ownbigpow.h getblocks.h encrypt.h)
+add_executable(RSA main.cpp bigint/bigint.h euclid.h ask.h decrypt.h prime.h ownbigpow.h getblocks.h encrypt.h)
