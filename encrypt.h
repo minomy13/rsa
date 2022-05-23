@@ -22,7 +22,7 @@ bool encrypt(string message) {
     int q;
     bigint N = 5293;
     bigint phi_N;
-    bigint d;
+    bigint d = 0;
 
     // open files
     ofstream rsaPub("rsa.pub");
@@ -33,41 +33,44 @@ bool encrypt(string message) {
     srand(time(NULL));
 
     int max = 200;
+    bigint min_d = 1000;
 
-    // choosing e
-    cout << "Choosing e" << endl;
-    e = rand() % max;
-    while (!prime(e)) {
+    while (d < min_d) {
+        // choosing e
+        cout << "Choosing e" << endl;
         e = rand() % max;
-    }
+        while (!prime(e)) {
+            e = rand() % max;
+        }
 
-    // choosing p
-    cout << "Choosing p" << endl;
-    p = rand() % max;
-    while (!prime(p)) {
+        // choosing p
+        cout << "Choosing p" << endl;
         p = rand() % max;
-    }
+        while (!prime(p)) {
+            p = rand() % max;
+        }
 
-    // choosing q
-    cout << "Choosing q" << endl;
-    q = rand() % max;
-    while (!prime(q)) {
+        // choosing q
+        cout << "Choosing q" << endl;
         q = rand() % max;
+        while (!prime(q)) {
+            q = rand() % max;
+        }
+
+        // Calculating N
+        cout << "Calculating N" << endl;
+        bigint p_b = p;
+        bigint q_b = q;
+        N = p_b * q_b;
+
+        // Calculating phi(N)
+        cout << "Calculating phi(N)" << endl;
+        phi_N = (p_b - (bigint) 1) * (q_b - (bigint) 1);
+
+        // Calculating d
+        cout << "Calculating d" << endl;
+        d = extended_euklid_x(e, phi_N);
     }
-
-    // Calculating N
-    cout << "Calculating N" << endl;
-    bigint p_b = p;
-    bigint q_b = q;
-    N = p_b * q_b;
-
-    // Calculating phi(N)
-    cout << "Calculating phi(N)" << endl;
-    phi_N = (p_b - (bigint) 1) * (q_b - (bigint) 1);
-
-    // Calculating d
-    cout << "Calculating d" << endl;
-    d = extended_euklid_x(e, phi_N);
 
     cout
             << endl
@@ -93,6 +96,7 @@ bool encrypt(string message) {
         bigint x = x_pow % N;
         blocks_calc.push_back(x);
     }
+
     // storing c to file "data.txt"
     for (int i = 0; i < blocks_calc.size(); i++) {
         dataTxt << blocks_calc[i] << "/";
