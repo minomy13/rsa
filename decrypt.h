@@ -60,13 +60,19 @@ string decrypt(string message, string pub, string key) {
         bigint m_pow = big_pow(big_c, big_d);
         bigint big_m = m_pow % big_N;
 
-        ofstream buffer("buffer");
-        ifstream buffer_in("buffer");
-        buffer << big_m;
-        buffer.close();
-        buffer_in >> m;
-        buffer_in.close();
-        result.push_back((char) m);
+        stringstream ss;
+        ss << big_m;
+        const char c = ss.str()[0];
+        cout << "big_m= " << big_m << " c=" << c;
+        result.push_back(c);
+
+//        ofstream buffer("buffer");
+//        ifstream buffer_in("buffer");
+//        buffer << big_m;
+//        buffer.close();
+//        buffer_in >> m;
+//        buffer_in.close();
+//        result.push_back((char) m);
     }
 
     return result;
